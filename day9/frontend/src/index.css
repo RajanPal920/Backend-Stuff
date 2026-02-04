@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+  background-color: darkcyan;
+}
+
+
+.notes {
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+}
+
+.note {
+  height: 120px;
+  width: fit-content;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(219, 144, 45, 0.934);
+}
+.note p {
+  font-weight: 400;
+}
+.btn {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+.red {
+  background-color: rgb(212, 53, 53);
+  border: none;
+  padding: 5px;
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+}
+.blue {
+  background-color: rgb(53, 132, 212);
+  border: none;
+  padding: 5px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: white;
+}
+.from {
+  width: 200px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+input[type="text"] {
+  border:none;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+}
+input[type="submit"] {
+  background-color: rgb(117, 212, 39);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: 500;
+  color: whitesmoke;
+  transform: scale(1.05);
+}
+input[type="submit"]:hover {
+  background-color: rgb(18, 139, 16);
+  cursor: pointer;
+}
