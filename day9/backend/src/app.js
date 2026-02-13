@@ -1,14 +1,13 @@
-const cors = require("cors");
 const express = require("express");
-const path = require("path")
+const cors = require("cors");
+const path = require("path");
 const noteModel = require("./models/note.model");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static("./public"))
-
+app.use(express.static("./public"));
 
 app.post("/api/note", async (req, res) => {
   const { title, desc } = req.body;
@@ -58,8 +57,8 @@ app.patch("/api/note/:id", async (req, res) => {
   });
 });
 
-app.use("*name",(req,res)=>{
-    res.sendFile(path.join(__dirname,"..","/public/index.html"))
-})
+app.use("*name", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+});
 
 module.exports = app;
