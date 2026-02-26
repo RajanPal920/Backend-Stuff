@@ -21,6 +21,18 @@ const userSchema = new mongoose.Schema({
     default:
       "https://ik.imagekit.io/vgvdtyor3/default-avatar-profile-social-media-260nw-1920331226.jpg?updatedAt=1770787392601",
   },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 
 const userModel = mongoose.model("user", userSchema);
