@@ -86,6 +86,7 @@ async function userLoginController(req, res) {
 
   res.status(200).json({
     message: "user loggedIn",
+    token,
     isValideUser: {
       username: isValideUser.username,
       email: isValideUser.email,

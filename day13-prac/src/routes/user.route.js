@@ -13,8 +13,13 @@ userRouter.post(
 userRouter.post(
   "/unfollow/:username",
   identifyUser,
-  followController.unfollowUserController);
+  followController.unfollowUserController,
+);
 
-
+userRouter.put(
+  "/accept/:username",
+  identifyUser,
+  followController.acceptFollowRequestController,
+);
 
 module.exports = userRouter;
