@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     password: [true, "password is required"],
+    select: false,
   },
   bio: String,
   profile_image: {
@@ -24,13 +25,13 @@ const userSchema = new mongoose.Schema({
   followers: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "user",
     },
   ],
   following: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "user",
     },
   ],
 });

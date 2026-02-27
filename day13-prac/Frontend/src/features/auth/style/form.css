@@ -1,0 +1,50 @@
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 400px;
+  padding: 20px;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-container h1 {
+  text-align: center;
+  text-transform: capitalize;
+}
+.form-container p {
+  cursor: pointer;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-container form input {
+  border: none;
+  outline: none;
+  padding-inline: 1.5rem;
+  padding-block: 1rem;
+  border-radius: 1rem;
+}
+.form-container form button {
+  border: none;
+  outline: none;
+  padding-inline: 1.5rem;
+  padding-block: 1rem;
+  border-radius: 1rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}/*# sourceMappingURL=form.css.map */

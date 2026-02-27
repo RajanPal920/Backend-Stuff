@@ -53,9 +53,11 @@ async function userRegisterController(req, res) {
 async function userLoginController(req, res) {
   const { username, password, email } = req.body;
 
-  const isValideUser = await userModel.findOne({
-    $or: [{ username: username }, { email: email }],
-  });
+  const isValideUser = await userModel
+    .findOne({
+      $or: [{ username: username }, { email: email }],
+    })
+    .select("+password");
 
   if (!isValideUser) {
     return res.status(404).json({
@@ -96,7 +98,26 @@ async function userLoginController(req, res) {
   });
 }
 
+async function getMeController(req, res) {
+  const user = await userModel.findById(req.user.id);
+
+  if (!user) {
+    return res.status(404).json({
+      message: "user not found",
+    });
+  }
+  res.status(200).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profileImage: user.profile_image,
+    },
+  });
+}
+
 module.exports = {
   userRegisterController,
   userLoginController,
+  getMeController,
 };

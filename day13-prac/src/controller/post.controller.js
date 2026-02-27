@@ -9,21 +9,35 @@ const imagekit = imageKit({
 });
 
 async function createPostController(req, res) {
-  const file = await imagekit.files.upload({
-    file: await toFile(Buffer.from(req.file.buffer), "file"),
-    fileName: "Test",
-    folder: "instaClone",
-  });
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        message: "Image file is required",
+      });
+    }
 
-  const post = await postModel.create({
-    caption: req.body.caption,
-    imgUrl: file.url,
-    user: req.user.id,
-  });
-  res.status(201).json({
-    message: "post created sucessfully",
-    post,
-  });
+    const file = await imagekit.files.upload({
+      file: await toFile(Buffer.from(req.file.buffer), "file"),
+      fileName: "Test",
+      folder: "instaClone",
+    });
+
+    const post = await postModel.create({
+      caption: req.body.caption,
+      imgUrl: file.url,
+      user: req.user.id,
+    });
+
+    res.status(201).json({
+      message: "Post created successfully",
+      post,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Post creation failed",
+    });
+  }
 }
 
 async function getPostController(req, res) {
@@ -87,9 +101,29 @@ async function likePostController(req, res) {
   });
 }
 
+async function getFeedController(req, res) {
+  const user = req.user;
+
+  try {
+    const posts = await Promise.all((await postModel.find().populate("user").lean()).map(async (post) =>{
+      const isLiked = await likeModel.findOne({
+        post: post._id,
+        user: user.username,
+      });
+      post.isLiked = isLiked ? true : false;
+      return post;
+    }))
+
+    res.json({ posts });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
 module.exports = {
   createPostController,
   getPostController,
   getPostDetailsController,
   likePostController,
+  getFeedController,
 };
